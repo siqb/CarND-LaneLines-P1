@@ -6,7 +6,8 @@
 
 The goals / steps of this project are the following:
 * Make a pipeline that finds lane lines on the road
-* Reflect on your work in a written report
+* Improve the lane line projections to be continuous even over broken lane lines
+* Reflect on my experience and findings
 
 
 [//]: # (Image References)
@@ -25,9 +26,9 @@ The goals / steps of this project are the following:
 
 ### Reflection
 
-### 1. Describe your pipeline. As part of the description, explain how you modified the draw_lines() function.
+### 1. Describe the pipeline. Explain the draw_lines() function was modified to project continuous lane lines.
 
-My pipeline consisted of 5 steps:
+My pipeline consisted of several steps:
 
 1. Load images
 
@@ -60,7 +61,7 @@ My pipeline consisted of 5 steps:
 
 6. Draw Hough lines
 
-* It was tricky to tune the Hough algorithm parameters (rho, theta, threshold, min_line_len, max_line_gap) but eventually, I was able to get an image with continuous lane line projections over the solid lane lines and broken lane line projections over the broken lane lines.
+* In a nutshell, the Hough transform is an algorithm which allows you to convert points to lines. A good explanation can be found [here](http://aishack.in/tutorials/hough-transform-basics/). It was tricky to tune the Hough algorithm parameters (rho, theta, threshold, min_line_len, max_line_gap) but eventually, I was able to get an image with continuous lane line projections over the solid lane lines and broken lane line projections over the broken lane lines.
 
 ![alt text][image6]
 
@@ -75,7 +76,7 @@ My pipeline consisted of 5 steps:
 ![alt text][image7]
 ![alt text][image9]
 
-### 2. Identify potential shortcomings with your current pipeline
+### 2. Potential shortcomings with the current pipeline
 
 * Algorithm parameters are finely hand tuned to the test videos provided by Udacity. Changes in lighting, lane line color/shape/intensity, and other conditions could cause the pipeline to fail.
 
@@ -83,7 +84,7 @@ My pipeline consisted of 5 steps:
 
 * The pipeline assumes that the left lane line will always have a positive slope and the right lane line will always have a negative slope. It also sets a minimum threshold for the magnitude of the slope for it to be considered a valid line sample. This assumption is not always true in the real world. For instance a curving lane could feasibly have both positive and negative slopes on both lane lines. It is true that even a sharply curving lane line will look straight from the perspective of the vehicle but only for a few feet at best which makes such a lane line detection basically useless.
 
-### 3. Suggest possible improvements to your pipeline
+### 3. Possible improvements to the pipeline
 
 * Algorithm parameters could be more finely tuned by tuning them over a wider variety of test footage. However, it is likely that there is no "one size fits all" set of parameters that will work in every single driving condition. A better idea could be to tune the parameters for multiple scenarios (low lighting, bright lighting, faded lane lines, etc.) and dynamically toggle between sets of parameters based on some external indicator of the driving conditions. Or perhaps, in the event of a failed lane detection the pipeline could quickly loop through these sets of parameters until it can again detect lanes lines.
 
