@@ -9,6 +9,7 @@ The goals / steps of this project are the following:
 * Improve the lane line projections to be continuous even over broken lane lines
 * Reflect on my experience and findings
 
+All output videos can be found in the `test_videos_output` directory of this repo.
 
 [//]: # (Image References)
 
